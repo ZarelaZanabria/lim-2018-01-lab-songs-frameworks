@@ -32,9 +32,8 @@ export class SearchComponent implements OnInit {
     listeners: 0,
     playcount: 0,
     summary: '',
-    url: ''
+    url: '',
   } 
-
   /*Creamos un array de Objectos, dado que segun la estructura de los track 
    este muestra un array de objectos por ese motivo estructuramos*/
 
@@ -73,7 +72,6 @@ export class SearchComponent implements OnInit {
         this.ranking[i].name = res.toptracks.track[i].name;
         this.ranking[i].listeners = res.toptracks.track[i].listeners;       
       }   
-
     });
   }
   reset() {
