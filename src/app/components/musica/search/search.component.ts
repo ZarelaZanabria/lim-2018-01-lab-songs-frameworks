@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
  //Importamos el Servicio 
  import { ApiService } from '../../../services/api.service';
 
@@ -29,26 +28,23 @@ export class SearchComponent implements OnInit {
   artist: Artist = {
     name: '',
     image: '',
-    listeners: 0,
-    playcount: 0,
-    summary: '',
-    url: '',
+   
   } 
   /*Creamos un array de Objectos, dado que segun la estructura de los track 
    este muestra un array de objectos por ese motivo estructuramos*/
 
 
   ranking: Ranking[] = [
-    { name: '', listeners: 0, rank: 1 },
-    { name: '', listeners: 0, rank: 2 },
-    { name: '', listeners: 0, rank: 3 },
-    { name: '', listeners: 0, rank: 4 },
-    { name: '', listeners: 0, rank: 5 },
-    { name: '', listeners: 0, rank: 6 },
-    { name: '', listeners: 0, rank: 7 },
-    { name: '', listeners: 0, rank: 8 },
-    { name: '', listeners: 0, rank: 9 },
-    { name: '', listeners: 0, rank: 10 } ]
+    { name: '', listeners: 0, rank: 1 ,like : 0,  dislike : 0},
+    { name: '', listeners: 0, rank: 2 ,like : 0,  dislike : 0},
+    { name: '', listeners: 0, rank: 3 ,like : 0,  dislike : 0},
+    { name: '', listeners: 0, rank: 4 ,like : 0,  dislike : 0},
+    { name: '', listeners: 0, rank: 5 ,like : 0,  dislike : 0},
+    { name: '', listeners: 0, rank: 6 ,like : 0,  dislike : 0},
+    { name: '', listeners: 0, rank: 7 ,like : 0,  dislike : 0},
+    { name: '', listeners: 0, rank: 8 ,like : 0,  dislike : 0},
+    { name: '', listeners: 0, rank: 9 ,like : 0,  dislike : 0},
+    { name: '', listeners: 0, rank: 10,like : 0,  dislike : 0 } ]
 
   ngOnInit() {
   }
@@ -60,17 +56,15 @@ export class SearchComponent implements OnInit {
       console.log(res)
       this.artist.name = res.artist.name;
       this.artist.image = res.artist.image[2]['#text'];
-      this.artist.listeners = res.artist.stats.listeners;
-      this.artist.playcount = res.artist.stats.playcount;
-      this.artist.summary = res.artist.bio.summary;
-      this.artist.url = res.artist.url;
+      
+      
     });
 
     this.apiService.searchMusic(this.searchStr, 'gettoptracks').subscribe((res: any) => {
       console.log(res)
       for (let i = 0; i < this.ranking.length; i++) {
         this.ranking[i].name = res.toptracks.track[i].name;
-        this.ranking[i].listeners = res.toptracks.track[i].listeners;       
+        this.ranking[i].listeners = res.toptracks.track[i].listeners;          
       }   
     });
   }
