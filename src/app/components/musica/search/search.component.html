@@ -1,23 +1,35 @@
-<h2>Busca a tu artista </h2>
+<div class="container"> 
+    <h2>Busca a tu artista </h2>
 
-<div class="card mt-5">
-  <div class="card-body">
-    <!--Cuando damos click en buscar ejecutamos la funcion buscar  -->
-    <form (ngSubmit)="searchMusic()" >
-      <div class="form-group">
-        <input type="text" class="form-control" name="searchStr" [(ngModel)]="searchStr"
-          placeholder="Buscar tu artista ">
+    <div class="card mt-5">
+      <div class="card-body">
+        <!--Cuando damos click en buscar ejecutamos la funcion buscar  -->
+        <form (ngSubmit)="searchMusic()">
+          <app-artist></app-artist>
+        </form>
       </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">
-            <i class="fas fa-search"></i> Buscar         
-        </button>
-        <!-- Necesito reseterar el servicio  -->
-        <button class="btn btn-secondary" type="reset" (click)="reset()">
-          <i class="fas fa-sync-alt"></i> Reset
-        </button>
-      </div>
-    </form>
-  </div>
-
+    </div>
+    
+    <div class="container" *ngIf="searchResult">
+      <h1>Top 10 de los tu artista</h1>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Canción</th>
+            <th scope="col">Top</th>
+            <th scope="col">Reproducciones</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let track of ranking">
+          <tr>
+            <th scope="row">{{ track.rank }}</th>
+            <td>{{ track.name }}</td>
+            <td>{{ track.rank }}</td>
+            <td>{{track.listeners | number }}</td>
+          </tr>
+        </tbody>
+      </table>
+    
+    </div>
 </div>

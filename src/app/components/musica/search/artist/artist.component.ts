@@ -5,11 +5,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './artist.component.html',
   styleUrls: ['./artist.component.css']
 })
-export class ArtistComponent implements OnInit {
+export class ArtistComponent implements OnInit { 
 
-  constructor() { }
+  constructor( ) { } 
 
   ngOnInit() {
   }
+
+
 
 }
