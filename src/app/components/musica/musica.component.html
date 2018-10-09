@@ -1,4 +1,58 @@
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="/">Ranking Songs</a>
 </nav>
-<app-search></app-search>
+<div class="container">
+  <h2>Busca a tu artista </h2>
+  <div class="card mt-5">
+    <div class="card-body">
+      <!--Cuando damos click en buscar ejecutamos la funcion buscar  -->
+      <form (ngSubmit)="searchMusic()">
+        <div class="form-group">
+          <input type="text" class="form-control" name="searchStr" [(ngModel)]="searchStr" placeholder="Buscar tu artista ">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit">
+            <i class="fas fa-search"></i> Buscar
+          </button>
+          <!-- Necesito reseterar el servicio  -->
+          <button class="btn btn-secondary" type="reset" (click)="reset()">
+            <i class="fas fa-sync-alt"></i> Reset
+          </button>
+        </div>
+      </form>
+
+      <div class="text-center">
+        <img src="{{artist.image}}" class="rounded" alt="...">
+        <p>{{artist.name}}</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container" *ngIf="searchResult">
+    <h1>Top 10 de los tu artista</h1>
+    <table class="table">
+      <thead class="thead-dark" ng-controller="votesController">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Canción</th>
+          <th scope="col">Reproducciones</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let track of ranking">
+        <tr>
+          <th scope="row">{{ track.rank }}
+          </th>
+          <td>
+            <div class="row">
+              <div class="col-md-8"> {{ track.name }}</div>
+              <div class="col-md-2"><button (click)="like(track)" class="btn btn-success"><i class="far fa-thumbs-up"></i></button></div>
+              <div class="col-md-2"><button (click)="dislike(track)" class="btn btn-danger"><i class="far fa-thumbs-down"></i></button></div>
+            </div>
+          </td>
+          <td>{{ track.like }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
