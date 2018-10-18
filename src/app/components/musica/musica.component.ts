@@ -13,6 +13,7 @@ import { Ranking } from '../../models/ranking';
   styleUrls: ['./musica.component.css']
 })
 export class MusicaComponent implements OnInit {
+  
 
   searchStr: string;
   searchResult: boolean; 
